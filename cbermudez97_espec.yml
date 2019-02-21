@@ -25,37 +25,40 @@ components:
         message:
           type: string
 paths:
-  /somePath:
-    get:
-      summary: This is a example of a get method.
-      description: Some description, is not optional.
-      responses:
-        '200':    # status code
-          description: A response of arrays
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: string
-        default:
-          $ref : '#/components/schemas/genericError'
+  /api/sign:
     post:
-      summary: This is a example of a post method.
-      description: Some description, is not optional.
-
+      summary: Sign transaction method.
+      
+      description: Should sign given transaction with the given private key.
+      
       security:
       - CsrfTokenAuth: []
-
+      
+      requestBody:
+            description: 'A JSON object containing: The Private Keys, which were returned by the [POST] /api/wallets. Multiple keys can be used for transactions with multiple inputs. The Transaction Context in the blockchain specific format [POST] /api/transactions or  [PUT] /api/transactions.'
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    privateKeys:
+                      type: array
+                      items:
+                        type: string
+                    transactionContext:
+                      type: string
+                      
       responses:
         '200':    # status code
-          description: A response of arrays
+          description: Signed transaction, which will be used to broadcast the transaction [PUT] /api/transactions/broadcast
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
+                type: object
+                properties:
+                  signedTransaction:
+                    type: string
         default:
           $ref : '#/components/schemas/genericError'
 
