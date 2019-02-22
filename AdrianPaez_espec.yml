@@ -25,39 +25,28 @@ components:
         message:
           type: string
 paths:
-  /somePath:
-    get:
-      summary: This is a example of a get method.
-      description: Some description, is not optional.
-      responses:
-        '200':    # status code
-          description: A response of arrays
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: string
-        default:
-          $ref : '#/components/genericError'
+  /api/wallets:
     post:
-      summary: This is a example of a post method.
-      description: Some description, is not optional.
+      summary: Create wallet method.
+      description: Should create a new wallet (address) in the blockchain.
 
       security:
       - CsrfTokenAuth: []
 
       responses:
-        '200':    # status code
-          description: A response of arrays
+        '200':
+          description: Private key, wich will be used to sign transactions by the [POST] /api/sign. Address wich identifies the wallet in the blockchain.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
+                type: object
+                properties:
+                  privateKey:
+                    type: string
+                  publicAddress:
+                    type: string
         default:
-          $ref : '#/components/genericError'
+          $ref : '#/components/schemas/genericError'
 
 # To remember :
 #  Every post method should use security schema.
