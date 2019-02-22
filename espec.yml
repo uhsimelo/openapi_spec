@@ -39,7 +39,7 @@ paths:
                 items:
                   type: string
         default:
-          $ref : '#/components/genericError'
+          $ref : '#/components/schemas/genericError'
     post:
       summary: This is a example of a post method.
       description: Some description, is not optional.
@@ -57,9 +57,9 @@ paths:
                 items:
                   type: string
         default:
-          $ref : '#/components/genericError'
+          $ref : '#/components/schemas/genericError'
 
 # To remember :
 #  Every post method should use security schema.
 #  Feel free to use and reuse components
-#  I will remember other stuffs in the process
+#  I think, at some point, someone should use oneOf and anyOf, pls take a look
