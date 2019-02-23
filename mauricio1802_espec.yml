@@ -30,7 +30,7 @@ paths:
       summary:  Return some general service info
       description: Check if the server is running correctly
       responses:
-        '200':    
+        '200':    #status code
           description:  A JSON object containing information about the service
           content:
             application/json:
