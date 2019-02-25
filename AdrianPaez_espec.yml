@@ -35,17 +35,20 @@ paths:
 
       responses:
         '200':
-          description: Private key, wich will be used to sign transactions by the [POST] /api/sign. Address wich identifies the wallet in the blockchain.
+          description: Should create a new wallet (address) in the blockchain
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   privateKey:
+                    description: Private key, which will be used to sign transactions by the [POST] /api/sign
                     type: string
                   publicAddress:
+                    description: Address which identifies the wallet in the blockchain
                     type: string
                   addressContext:
+                    description: Any non security sensitive data associated with wallet. This context will be passed to [POST] /api/transactions/*. Can be empty.
                     type: string
         default:
           $ref : '#/components/schemas/genericError'
