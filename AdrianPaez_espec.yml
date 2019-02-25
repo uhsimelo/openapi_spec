@@ -45,6 +45,8 @@ paths:
                     type: string
                   publicAddress:
                     type: string
+                  addressContext:
+                    type: string
         default:
           $ref : '#/components/schemas/genericError'
 
